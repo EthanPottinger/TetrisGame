@@ -12,6 +12,7 @@ public class TetrisBoard {
     private Tetrimino tetrimino;
     
     public TetrisBoard() {
+        tetrimino = new Tetrimino();
         board = new boolean[20][10];
     }
     public void activate(Coordinates coordinate) {
@@ -83,7 +84,38 @@ public class TetrisBoard {
         JOptionPane.showMessageDialog(null, grid, title, JOptionPane.PLAIN_MESSAGE);
     }
     public void spawnTetrimino() {
-        
+        tetrimino.createTetrimino(1);
+        Coordinates[] coordinates = tetrimino.getCoordinates();
+        for(int i = 0; i < 4; i++) {
+            activate(coordinates[i]);
+        }
+    }
+    public void deactivateTetrimino() {
+        Coordinates[] coordinates = tetrimino.getCoordinates();
+        for(int i = 0; i < 4; i++) {
+            deactivate(coordinates[i]);
+        }
+    }
+    public void moveDown() {
+        deactivateTetrimino();
+        tetrimino.moveDown(board);
+        updateTetrimino();
+    }
+    public void moveRight() {
+        deactivateTetrimino();
+        tetrimino.moveRight(board);
+        updateTetrimino();
+    }
+    public void moveLeft() {
+        deactivateTetrimino();
+        tetrimino.moveLeft(board);
+        updateTetrimino();
+    }
+    public void updateTetrimino() {
+        Coordinates[] coordinates = tetrimino.getCoordinates();
+        for(int i = 0; i < 4; i++) {
+            activate(coordinates[i]);
+        }
     }
     
 }

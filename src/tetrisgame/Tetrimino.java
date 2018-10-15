@@ -55,18 +55,19 @@ public class Tetrimino {
             if(!check.check(board)) valid = false;
         }
         if(valid) {
+            System.out.println("yeet");
             for(int c = 0; c < coordinates.length; c++) {
                 coordinates[c].moveLeft();
             }
         }
     }
-    public void spawnTetrimino(int tetrimino) {
+    public void createTetrimino(int tetrimino) {
         coordinates = new Coordinates[4];
         if(tetrimino == I) {
-            coordinates[0] = new Coordinates(3, 19);
-            coordinates[1] = new Coordinates(4, 19);
-            coordinates[2] = new Coordinates(5, 19);
-            coordinates[3] = new Coordinates(6, 19);
+            coordinates[0] = new Coordinates(3, 0);
+            coordinates[1] = new Coordinates(4, 0);
+            coordinates[2] = new Coordinates(5, 0);
+            coordinates[3] = new Coordinates(6, 0);
         }
         else if(tetrimino == J) {
             

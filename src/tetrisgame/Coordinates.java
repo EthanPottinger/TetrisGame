@@ -5,6 +5,7 @@ package tetrisgame;
  * @author e.pottinger
  */
 public class Coordinates {
+    //ayy lmao
     
     public int x;
     public int y;
@@ -21,17 +22,20 @@ public class Coordinates {
     }
     public boolean collisionCheck(boolean[][] board) {
         boolean collision = false;
-        if(board[y][x]) collision = true;
+        if(board[y][x]) {
+            collision = true;
+            System.out.println("boom crash");
+        }
         return collision;
     }
-    public boolean checkBounds(int length, int height) {
+    public boolean checkBounds(boolean[][] board) {
         boolean inBounds = true;
-        if(x < 0 || y < 0 || x > length || y > height) inBounds = false;
+        if(x < 0 || y < 0 || x > board[0].length || y > board.length) inBounds = false;
         return inBounds;
     }
     public boolean check(boolean[][] board) {
         boolean valid = false;
-        if(!collisionCheck(board) && checkBounds(board[0].length, board.length)) {
+        if(!collisionCheck(board) && checkBounds(board)) {
             valid = true;
         }
         return valid;
