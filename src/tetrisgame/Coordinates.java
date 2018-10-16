@@ -7,8 +7,8 @@ package tetrisgame;
 public class Coordinates {
     //ayy lmao
     
-    public int x;
-    public int y;
+    private int x;
+    private int y;
     
     public Coordinates(int x, int y) {
         this.x = x;
@@ -22,15 +22,14 @@ public class Coordinates {
     }
     public boolean collisionCheck(boolean[][] board) {
         boolean collision = false;
-        if(board[y][x]) {
-            collision = true;
-            System.out.println("boom crash");
+        if(checkBounds(board)) {
+            if(board[y][x]) collision = true;
         }
         return collision;
     }
     public boolean checkBounds(boolean[][] board) {
         boolean inBounds = true;
-        if(x < 0 || y < 0 || x > board[0].length || y > board.length) inBounds = false;
+        if(x < 0 || y < 0 || x >= board[0].length || y >= board.length) inBounds = false;
         return inBounds;
     }
     public boolean check(boolean[][] board) {

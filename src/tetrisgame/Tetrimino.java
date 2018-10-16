@@ -51,11 +51,10 @@ public class Tetrimino {
     public void moveLeft(boolean[][] board) {
         boolean valid = true;
         for(int c = 0; c < coordinates.length; c++) {
-            Coordinates check = new Coordinates(coordinates[c].giveX() - 1, coordinates[c].giveY() + 1);
+            Coordinates check = new Coordinates(coordinates[c].giveX() - 1, coordinates[c].giveY());
             if(!check.check(board)) valid = false;
         }
         if(valid) {
-            System.out.println("yeet");
             for(int c = 0; c < coordinates.length; c++) {
                 coordinates[c].moveLeft();
             }
@@ -70,22 +69,40 @@ public class Tetrimino {
             coordinates[3] = new Coordinates(6, 0);
         }
         else if(tetrimino == J) {
-            
+            coordinates[0] = new Coordinates(6, 1);
+            coordinates[1] = new Coordinates(6, 0);
+            coordinates[2] = new Coordinates(5, 0);
+            coordinates[3] = new Coordinates(4, 0);
         }
         else if(tetrimino == L) {
-            
+            coordinates[0] = new Coordinates(6, 0);
+            coordinates[1] = new Coordinates(5, 0);
+            coordinates[2] = new Coordinates(4, 0);
+            coordinates[3] = new Coordinates(4, 1);
         }
         else if(tetrimino == T) {
-            
+            coordinates[0] = new Coordinates(6, 0);
+            coordinates[1] = new Coordinates(5, 0);
+            coordinates[2] = new Coordinates(5, 1);
+            coordinates[3] = new Coordinates(4, 0);
         }
         else if(tetrimino == S) {
-            
+            coordinates[0] = new Coordinates(6, 0);
+            coordinates[1] = new Coordinates(5, 0);
+            coordinates[2] = new Coordinates(5, 1);
+            coordinates[3] = new Coordinates(4, 1);
         }
         else if(tetrimino == Z) {
-            
+            coordinates[0] = new Coordinates(4, 0);
+            coordinates[1] = new Coordinates(5, 0);
+            coordinates[2] = new Coordinates(5, 1);
+            coordinates[3] = new Coordinates(6, 1);
         }
         else if(tetrimino == O) {
-            
+            coordinates[0] = new Coordinates(4, 0);
+            coordinates[1] = new Coordinates(5, 0);
+            coordinates[2] = new Coordinates(4, 1);
+            coordinates[3] = new Coordinates(5, 1);
         }
     }
     
