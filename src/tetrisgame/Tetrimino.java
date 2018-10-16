@@ -28,7 +28,7 @@ public class Tetrimino {
         boolean valid = true;
         for(int c = 0; c < coordinates.length; c++) {
             Coordinates check = new Coordinates(coordinates[c].giveX(), coordinates[c].giveY() + 1);
-            if(!check.check(board)) valid = false;
+            if(!check.valid(board)) valid = false;
         }
         if(valid) {
             for(int c = 0; c < coordinates.length; c++) {
@@ -40,7 +40,7 @@ public class Tetrimino {
         boolean valid = true;
         for(int c = 0; c < coordinates.length; c++) {
             Coordinates check = new Coordinates(coordinates[c].giveX() + 1, coordinates[c].giveY());
-            if(!check.check(board)) valid = false;
+            if(!check.valid(board)) valid = false;
         }
         if(valid) {
             for(int c = 0; c < coordinates.length; c++) {
@@ -52,13 +52,22 @@ public class Tetrimino {
         boolean valid = true;
         for(int c = 0; c < coordinates.length; c++) {
             Coordinates check = new Coordinates(coordinates[c].giveX() - 1, coordinates[c].giveY());
-            if(!check.check(board)) valid = false;
+            if(!check.valid(board)) valid = false;
         }
         if(valid) {
             for(int c = 0; c < coordinates.length; c++) {
                 coordinates[c].moveLeft();
             }
         }
+    }
+    public boolean valid(boolean[][] board) {
+        boolean valid = true;
+        for(int i = 0; i < coordinates.length; i++) {
+            if(coordinates[i].valid(board) == false) {
+                valid = false;
+            }
+        }
+        return valid;
     }
     public void createTetrimino(int tetrimino) {
         coordinates = new Coordinates[4];

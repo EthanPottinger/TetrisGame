@@ -20,21 +20,21 @@ public class Coordinates {
     public int giveY() {
         return y;
     }
-    public boolean collisionCheck(boolean[][] board) {
+    public boolean collision(boolean[][] board) {
         boolean collision = false;
-        if(checkBounds(board)) {
+        if(inBounds(board) == true) {
             if(board[y][x]) collision = true;
         }
         return collision;
     }
-    public boolean checkBounds(boolean[][] board) {
+    public boolean inBounds(boolean[][] board) {
         boolean inBounds = true;
         if(x < 0 || y < 0 || x >= board[0].length || y >= board.length) inBounds = false;
         return inBounds;
     }
-    public boolean check(boolean[][] board) {
+    public boolean valid(boolean[][] board) {
         boolean valid = false;
-        if(!collisionCheck(board) && checkBounds(board)) {
+        if(collision(board) == false && inBounds(board) == true) {
             valid = true;
         }
         return valid;

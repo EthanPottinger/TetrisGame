@@ -84,17 +84,10 @@ public class TetrisBoard {
         JOptionPane.showMessageDialog(null, grid, title, JOptionPane.PLAIN_MESSAGE);
     }
     public void spawnTetrimino() {
-        boolean canSpawn = true;
         tetrimino.createTetrimino(tetrimino.O);
-        Coordinates[] coordinates = tetrimino.getCoordinates();
-        for(int i = 0; i < 4; i++) {
-            if(coordinates[i].collisionCheck(board)) {
-                canSpawn = false;
-            }
-        }
-        if(canSpawn) {
+        if(tetrimino.valid(board)) {
             for(int i = 0; i < 4; i++) {
-                activate(coordinates[i]);
+                activate(tetrimino.getCoordinates()[i]);
             }
         }
         else {
@@ -108,9 +101,12 @@ public class TetrisBoard {
         }
     }
     public void moveDown() {
+        boolean update = false;
         deactivateTetrimino();
         tetrimino.moveDown(board);
+        if(!tetrimino.valid(board)) update = true;
         updateTetrimino();
+        if(update) updateBoard();
     }
     public void moveRight() {
         deactivateTetrimino();
@@ -123,24 +119,8 @@ public class TetrisBoard {
         updateTetrimino();
     }
     public void updateTetrimino() {
-        boolean update = false;
-        Coordinates[] coordinates = tetrimino.getCoordinates();
         for(int i = 0; i < 4; i++) {
-            activate(coordinates[i]);
-        }
-        for(int i = 0; i < 4; i++) {
-            coordinates[i].moveDown();
-            if(!coordinates[i].check(board)) {
-                System.out.println("put");
-                update = true;
-                System.out.println(update);
-            }
-        }
-        
-        System.out.println(update);
-        if(update) {
-            System.out.println("pout");
-            updateBoard();
+            activate(tetrimino.getCoordinates()[i]);
         }
     }
     
