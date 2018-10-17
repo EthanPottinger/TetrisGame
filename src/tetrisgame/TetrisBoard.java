@@ -83,11 +83,11 @@ public class TetrisBoard {
         }
         JOptionPane.showMessageDialog(null, grid, title, JOptionPane.PLAIN_MESSAGE);
     }
-    public void spawnTetrimino() {
-        tetrimino.createTetrimino(tetrimino.O);
-        if(tetrimino.valid(board)) {
+    public void spawnTetrimino(int tetrimino) {
+        this.tetrimino.createTetrimino(tetrimino);
+        if(this.tetrimino.valid(board, 0, 0)) {
             for(int i = 0; i < 4; i++) {
-                activate(tetrimino.getCoordinates()[i]);
+                activate(this.tetrimino.getCoordinates()[i]);
             }
         }
         else {
@@ -104,9 +104,14 @@ public class TetrisBoard {
         boolean update = false;
         deactivateTetrimino();
         tetrimino.moveDown(board);
-        if(!tetrimino.valid(board)) update = true;
+        if(tetrimino.valid(board, 0, 1) == false) update = true;
         updateTetrimino();
-        if(update) updateBoard();
+        outputGrid("ye");
+        if(update) {
+            updateBoard();
+            spawnTetrimino(randInt(1, 7));
+        }
+        
     }
     public void moveRight() {
         deactivateTetrimino();
@@ -122,6 +127,9 @@ public class TetrisBoard {
         for(int i = 0; i < 4; i++) {
             activate(tetrimino.getCoordinates()[i]);
         }
+    }
+    public int randInt(int lo, int hi) {
+        return (int)((Math.random() * hi - lo + 1) + lo);
     }
     
 }

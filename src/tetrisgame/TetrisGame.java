@@ -12,16 +12,16 @@ public class TetrisGame {
     public static void main(String[] args) {
         TetrisBoard cx = new TetrisBoard();
         String title = "yee";
-        cx.activate(new Coordinates(0, 19));
-        cx.activate(new Coordinates(1, 19));
-        cx.activate(new Coordinates(2, 19));
-        cx.activate(new Coordinates(3, 19));
-        cx.activate(new Coordinates(6, 19));
-        cx.activate(new Coordinates(7, 19));
-        cx.activate(new Coordinates(8, 19));
-        cx.activate(new Coordinates(9, 19));
+        for(int i = 19; i >= 7; i--) {
+            cx.activate(new Coordinates(0, i));
+            cx.activate(new Coordinates(1, i));
+            cx.activate(new Coordinates(2, i));
+            cx.activate(new Coordinates(7, i));
+            cx.activate(new Coordinates(8, i));
+            cx.activate(new Coordinates(9, i));
+        }
         cx.outputGrid("ligma");
-        cx.spawnTetrimino();
+        cx.spawnTetrimino(cx.randInt(1, 7));
         cx.outputGrid("fugma");
         cx.moveLeft();
         cx.outputGrid("sugma");
@@ -29,7 +29,7 @@ public class TetrisGame {
         cx.outputGrid("sugondese");
         cx.moveDown();
         cx.outputGrid("bofa");
-        for(int i = 0; i < 19; i++) {
+        for(int i = 0; i < 10000; i++) {
             cx.moveDown();
             cx.outputGrid("steve jobs");
         }

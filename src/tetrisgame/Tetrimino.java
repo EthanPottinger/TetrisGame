@@ -25,48 +25,39 @@ public class Tetrimino {
         return coordinates;
     }
     public void moveDown(boolean[][] board) {
-        boolean valid = true;
-        for(int c = 0; c < coordinates.length; c++) {
-            Coordinates check = new Coordinates(coordinates[c].giveX(), coordinates[c].giveY() + 1);
-            if(!check.valid(board)) valid = false;
-        }
-        if(valid) {
+        if(valid(board, 0, 1)) {
             for(int c = 0; c < coordinates.length; c++) {
                 coordinates[c].moveDown();
             }
         }
     }
     public void moveRight(boolean[][] board) {
-        boolean valid = true;
-        for(int c = 0; c < coordinates.length; c++) {
-            Coordinates check = new Coordinates(coordinates[c].giveX() + 1, coordinates[c].giveY());
-            if(!check.valid(board)) valid = false;
-        }
-        if(valid) {
+        if(valid(board, 1, 0)) {
             for(int c = 0; c < coordinates.length; c++) {
                 coordinates[c].moveRight();
             }
         }
     }
     public void moveLeft(boolean[][] board) {
-        boolean valid = true;
-        for(int c = 0; c < coordinates.length; c++) {
-            Coordinates check = new Coordinates(coordinates[c].giveX() - 1, coordinates[c].giveY());
-            if(!check.valid(board)) valid = false;
-        }
-        if(valid) {
+        if(valid(board, -1, 0)) {
             for(int c = 0; c < coordinates.length; c++) {
                 coordinates[c].moveLeft();
             }
         }
     }
-    public boolean valid(boolean[][] board) {
+    public void rotateClockwise(boolean[][] board, Coordinates center) {
+        
+    }
+    public void rotateCounterClockwise(boolean[][] board, Coordinates center) {
+        
+    }
+    public boolean valid(boolean[][] board, int xChange, int yChange) {
         boolean valid = true;
-        for(int i = 0; i < coordinates.length; i++) {
-            if(coordinates[i].valid(board) == false) {
-                valid = false;
-            }
+        for(int c = 0; c < coordinates.length; c++) {
+            Coordinates check =  new Coordinates(coordinates[c].giveX() + xChange, coordinates[c].giveY() + yChange);
+            if(check.valid(board) == false) valid = false;
         }
+        System.out.println(valid);
         return valid;
     }
     public void createTetrimino(int tetrimino) {
