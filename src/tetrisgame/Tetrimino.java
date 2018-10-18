@@ -46,10 +46,32 @@ public class Tetrimino {
         }
     }
     public void rotateClockwise(boolean[][] board, Coordinates center) {
-        
+        Coordinates[] rotate = coordinateDifferences(center);
+        for(int i = 0; i < 4; i++) {
+            if(rotate[i].giveX() == 0 && Math.abs(rotate[i].giveY()) == 1) {
+                coordinates[i] = new Coordinates(coordinates[i].giveY(), coordinates[i].giveX());
+            }
+            else if(rotate[i].giveY() == 0 && Math.abs(rotate[i].giveX()) == 1) {
+                coordinates[i] = new Coordinates(coordinates[i].giveY(), coordinates[i].giveX() * -1);
+            }
+            else if(rotate[i].giveY() == rotate[i].giveX() && rotate[i].giveX() != 0) {
+                coordinates[i] = new Coordinates(coordinates[i].giveX() * -1, coordinates[i].giveY());
+            }
+            else if(rotate[i].giveX() != rotate[i].giveY()) {
+                coordinates[i] = new Coordinates(coordinates[i].giveX() , coordinates[i].giveY() * -1);
+            }
+        }
     }
     public void rotateCounterClockwise(boolean[][] board, Coordinates center) {
         
+    }
+    public Coordinates[] coordinateDifferences(Coordinates center) {
+        Coordinates[] rotate = new Coordinates[4];
+        for(int i = 0; i < 4; i++) {
+            rotate[i] = new Coordinates(coordinates[i].giveX() - center.giveX(), 
+                                        coordinates[i].giveY() - center.giveY());
+        }
+        return rotate;
     }
     public boolean valid(boolean[][] board, int xChange, int yChange) {
         boolean valid = true;
