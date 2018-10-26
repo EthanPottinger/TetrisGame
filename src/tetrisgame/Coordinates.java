@@ -7,29 +7,29 @@ package tetrisgame;
 public class Coordinates {
     //ayy lmao
     
-    private int x;
-    private int y;
+    private int r;
+    private int i;
     
     public Coordinates(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.r = x;
+        this.i = y;
     }
     public int giveX() {
-        return x;
+        return r;
     }
     public int giveY() {
-        return y;
+        return i;
     }
     public boolean collision(boolean[][] board) {
         boolean collision = false;
         if(inBounds(board) == true) {
-            if(board[y][x]) collision = true;
+            if(board[i][r]) collision = true;
         }
         return collision;
     }
     public boolean inBounds(boolean[][] board) {
         boolean inBounds = true;
-        if(x < 0 || y < 0 || x >= board[0].length || y >= board.length) inBounds = false;
+        if(r < 0 || i < 0 || r >= board[0].length || i >= board.length) inBounds = false;
         return inBounds;
     }
     public boolean valid(boolean[][] board) {
@@ -40,16 +40,16 @@ public class Coordinates {
         return valid;
     }
     public void moveLeft() {
-        x--;
+        r--;
     }
     public void moveRight() {
-        x++;
+        r++;
     }
     public void moveUp() {
-        y--;
+        i--;
     }
     public void moveDown() {
-        y++;
+        i++;
     }
     
 }
