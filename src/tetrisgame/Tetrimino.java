@@ -49,15 +49,19 @@ public class Tetrimino {
         Coordinates[] rotate = coordinateDifferences(center);
         for(int i = 0; i < 4; i++) {
             if(rotate[i].giveX() == 0 && Math.abs(rotate[i].giveY()) == 1) {
+                System.out.println("edge, top, bottom");
                 coordinates[i] = new Coordinates(coordinates[i].giveY(), coordinates[i].giveX());
             }
             else if(rotate[i].giveY() == 0 && Math.abs(rotate[i].giveX()) == 1) {
+                System.out.println("edge, left, right");
                 coordinates[i] = new Coordinates(coordinates[i].giveY(), coordinates[i].giveX() * -1);
             }
             else if(rotate[i].giveY() == rotate[i].giveX() && rotate[i].giveX() != 0) {
+                System.out.println("corners, toplleft, bottomright");
                 coordinates[i] = new Coordinates(coordinates[i].giveX() * -1, coordinates[i].giveY());
             }
             else if(rotate[i].giveX() != rotate[i].giveY()) {
+                System.out.println("corners, topright, bottom, left");
                 coordinates[i] = new Coordinates(coordinates[i].giveX() , coordinates[i].giveY() * -1);
             }
         }
@@ -85,38 +89,38 @@ public class Tetrimino {
     public void createTetrimino(int tetrimino) {
         coordinates = new Coordinates[4];
         if(tetrimino == I) {
-            coordinates[0] = new Coordinates(3, 0);
-            coordinates[1] = new Coordinates(4, 0);
-            coordinates[2] = new Coordinates(5, 0);
+            coordinates[0] = new Coordinates(5, 0);
+            coordinates[1] = new Coordinates(3, 0);
+            coordinates[2] = new Coordinates(4, 0);
             coordinates[3] = new Coordinates(6, 0);
         }
         else if(tetrimino == J) {
-            coordinates[0] = new Coordinates(6, 1);
-            coordinates[1] = new Coordinates(6, 0);
-            coordinates[2] = new Coordinates(5, 0);
+            coordinates[0] = new Coordinates(5, 0);
+            coordinates[1] = new Coordinates(6, 1);
+            coordinates[2] = new Coordinates(6, 0);
             coordinates[3] = new Coordinates(4, 0);
         }
         else if(tetrimino == L) {
-            coordinates[0] = new Coordinates(6, 0);
-            coordinates[1] = new Coordinates(5, 0);
+            coordinates[0] = new Coordinates(5, 0);
+            coordinates[1] = new Coordinates(6, 0);
             coordinates[2] = new Coordinates(4, 0);
             coordinates[3] = new Coordinates(4, 1);
         }
         else if(tetrimino == T) {
-            coordinates[0] = new Coordinates(6, 0);
-            coordinates[1] = new Coordinates(5, 0);
+            coordinates[0] = new Coordinates(5, 0);
+            coordinates[1] = new Coordinates(6, 0);
             coordinates[2] = new Coordinates(5, 1);
             coordinates[3] = new Coordinates(4, 0);
         }
         else if(tetrimino == S) {
-            coordinates[0] = new Coordinates(6, 0);
-            coordinates[1] = new Coordinates(5, 0);
+            coordinates[0] = new Coordinates(5, 0);
+            coordinates[1] = new Coordinates(6, 0);
             coordinates[2] = new Coordinates(5, 1);
             coordinates[3] = new Coordinates(4, 1);
         }
         else if(tetrimino == Z) {
-            coordinates[0] = new Coordinates(4, 0);
-            coordinates[1] = new Coordinates(5, 0);
+            coordinates[0] = new Coordinates(5, 0);
+            coordinates[1] = new Coordinates(4, 0);
             coordinates[2] = new Coordinates(5, 1);
             coordinates[3] = new Coordinates(6, 1);
         }
