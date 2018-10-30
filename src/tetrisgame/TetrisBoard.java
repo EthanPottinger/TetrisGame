@@ -119,7 +119,9 @@ public class TetrisBoard {
         updateTetrimino();
     }
     public void rotate() {
+        deactivateTetrimino();
         tetrimino.rotateClockwise(board, tetrimino.getCoordinates()[0]);
+        updateTetrimino();
     }
     public void moveLeft() {
         deactivateTetrimino();

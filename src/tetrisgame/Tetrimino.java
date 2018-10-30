@@ -46,23 +46,23 @@ public class Tetrimino {
         }
     }
     public void rotateClockwise(boolean[][] board, Coordinates center) {
-        Coordinates[] rotate = coordinateDifferences(center);
+        Coordinates[] difference = coordinateDifferences(center);
         for(int i = 0; i < 4; i++) {
-            if(rotate[i].giveX() == 0 && Math.abs(rotate[i].giveY()) == 1) {
-                System.out.println("edge, top, bottom");
-                coordinates[i] = new Coordinates(coordinates[i].giveY(), coordinates[i].giveX());
+            if(difference[i].giveX() == -1 && Math.abs(difference[i].giveY()) == -1) {
+                coordinates[i].moveRight();
+                coordinates[i].moveRight();
             }
-            else if(rotate[i].giveY() == 0 && Math.abs(rotate[i].giveX()) == 1) {
-                System.out.println("edge, left, right");
-                coordinates[i] = new Coordinates(coordinates[i].giveY(), coordinates[i].giveX() * -1);
+            else if(difference[i].giveY() == -1 && Math.abs(difference[i].giveX()) == 0) {
+                coordinates[i].moveRight();
+                coordinates[i].moveDown();
             }
-            else if(rotate[i].giveY() == rotate[i].giveX() && rotate[i].giveX() != 0) {
-                System.out.println("corners, toplleft, bottomright");
-                coordinates[i] = new Coordinates(coordinates[i].giveX() * -1, coordinates[i].giveY());
+            else if(difference[i].giveY() == -1 && difference[i].giveX() == 1) {
+                coordinates[i].moveDown();
+                coordinates[i].moveDown();
             }
-            else if(rotate[i].giveX() != rotate[i].giveY()) {
-                System.out.println("corners, topright, bottom, left");
-                coordinates[i] = new Coordinates(coordinates[i].giveX() , coordinates[i].giveY() * -1);
+            else if(difference[i].giveX() == -1 && difference[i].giveY() == 0) {
+                coordinates[i].moveRight();
+                coordinates[i].moveUp();
             }
         }
     }
