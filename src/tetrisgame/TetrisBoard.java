@@ -15,6 +15,9 @@ public class TetrisBoard {
         tetrimino = new Tetrimino();
         board = new boolean[20][10];
     }
+    public boolean[][] getBoard() {
+        return board;
+    }
     public void activate(Coordinates coordinate) {
         board[coordinate.giveY()][coordinate.giveX()] = true;
     }
