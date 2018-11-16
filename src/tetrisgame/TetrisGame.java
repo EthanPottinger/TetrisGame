@@ -11,7 +11,6 @@ public class TetrisGame {
      */
     public static void main(String[] args) {
         Graphics1 g = new Graphics1();
-        
     }
     
 }

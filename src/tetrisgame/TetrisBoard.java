@@ -8,11 +8,12 @@ import javax.swing.JOptionPane;
  */
 public class TetrisBoard {
     
+    public final Tetrimino[] TETRIMINOS = {new TetriminoO(), new TetriminoT(), new TetriminoI(), new TetriminoL(), new TetriminoJ(), new TetriminoS(), new TetriminoZ()}; 
+    
     private boolean[][] board;
-    private Tetrimino tetrimino;
+    
     
     public TetrisBoard() {
-        tetrimino = new Tetrimino();
         board = new boolean[20][10];
     }
     public boolean[][] getBoard() {
@@ -87,54 +88,25 @@ public class TetrisBoard {
         JOptionPane.showMessageDialog(null, grid, title, JOptionPane.PLAIN_MESSAGE);
     }
     public void spawnTetrimino(int tetrimino) {
-        this.tetrimino.createTetrimino(tetrimino);
-        if(this.tetrimino.valid(board, 0, 0)) {
-            for(int i = 0; i < 4; i++) {
-                activate(this.tetrimino.getCoordinates()[i]);
-            }
-        }
-        else {
-            System.exit(0);
-        }
+        
     }
     public void deactivateTetrimino() {
-        Coordinates[] coordinates = tetrimino.getCoordinates();
-        for(int i = 0; i < 4; i++) {
-            deactivate(coordinates[i]);
-        }
+        
     }
     public void moveDown() {
-        boolean update = false;
-        deactivateTetrimino();
-        tetrimino.moveDown(board);
-        if(tetrimino.valid(board, 0, 1) == false) update = true;
-        updateTetrimino();
-        outputGrid("ye");
-        if(update) {
-            updateBoard();
-            spawnTetrimino(randInt(1, 7));
-        }
         
     }
     public void moveRight() {
-        deactivateTetrimino();
-        tetrimino.moveRight(board);
-        updateTetrimino();
+        
     }
     public void rotate() {
-        deactivateTetrimino();
-        tetrimino.rotateClockwise(board, tetrimino.getCoordinates()[0]);
-        updateTetrimino();
+        
     }
     public void moveLeft() {
-        deactivateTetrimino();
-        tetrimino.moveLeft(board);
-        updateTetrimino();
+        
     }
     public void updateTetrimino() {
-        for(int i = 0; i < 4; i++) {
-            activate(tetrimino.getCoordinates()[i]);
-        }
+        
     }
     public int randInt(int lo, int hi) {
         return (int)((Math.random() * hi - lo + 1) + lo);
