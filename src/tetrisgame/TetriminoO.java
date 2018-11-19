@@ -11,8 +11,8 @@ public class TetriminoO extends Tetrimino {
     public TetriminoO() {
         coordinateDifferences[0] = new Coordinates(0, 0);
         coordinateDifferences[1] = new Coordinates(0, 1);
-        coordinateDifferences[2] = new Coordinates(1, 0);
-        coordinateDifferences[3] = new Coordinates(1, 1);
+        coordinateDifferences[2] = new Coordinates(-1, 0);
+        coordinateDifferences[3] = new Coordinates(-1, 1);
     }
 
     @Override

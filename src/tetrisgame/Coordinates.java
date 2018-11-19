@@ -43,6 +43,9 @@ public class Coordinates {
         }
         return valid;
     }
+    public Coordinates add(Coordinates add) {
+        return new Coordinates(x + add.giveX(), y + add.giveY());
+    }
     public void moveLeft() {
         x--;
     }
