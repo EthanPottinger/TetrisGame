@@ -61,5 +61,10 @@ public class Coordinates {
     public void outputCoordinates() {
         System.out.println("(" + x + ", " + y + ")");
     }
+    public boolean equals(Coordinates coordinate) {
+        if(coordinate.giveX() != this.x) return false;
+        else if(coordinate.giveY() != this.y) return false;
+        return true;
+    }
     
 }

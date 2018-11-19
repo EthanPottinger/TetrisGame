@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package tetrisgame;
 
 /**
@@ -23,12 +17,19 @@ public class TetriminoS extends Tetrimino {
 
     @Override
     public void rotateClockwise(boolean[][] board, Coordinates center) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for(int i = 0; i < coordinateDifferences.length; i++) {
+            if(coordinateDifferences[i].equals(new Coordinates(-1, -1)) || coordinateDifferences[i].equals(new Coordinates(1, 1))) {
+                coordinateDifferences[i].setCoordinates(coordinateDifferences[i].giveX(), coordinateDifferences[i].giveY() * -1);
+            }
+            if(coordinateDifferences[i].equals(new Coordinates(-1, -1)) || coordinateDifferences[i].equals(new Coordinates(1, 1))) {
+                coordinateDifferences[i].setCoordinates(coordinateDifferences[i].giveX(), coordinateDifferences[i].giveY());
+            }
+        }
     }
 
     @Override
     public void rotateCounterClockwise(boolean[][] board, Coordinates center) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
 }
