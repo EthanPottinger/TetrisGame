@@ -21,8 +21,14 @@ public class TetriminoS extends Tetrimino {
             if(coordinateDifferences[i].equals(new Coordinates(-1, -1)) || coordinateDifferences[i].equals(new Coordinates(1, 1))) {
                 coordinateDifferences[i].setCoordinates(coordinateDifferences[i].giveX(), coordinateDifferences[i].giveY() * -1);
             }
-            if(coordinateDifferences[i].equals(new Coordinates(-1, -1)) || coordinateDifferences[i].equals(new Coordinates(1, 1))) {
-                coordinateDifferences[i].setCoordinates(coordinateDifferences[i].giveX(), coordinateDifferences[i].giveY());
+            else if(coordinateDifferences[i].equals(new Coordinates(-1, 1)) || coordinateDifferences[i].equals(new Coordinates(1, -1))) {
+                coordinateDifferences[i].setCoordinates(coordinateDifferences[i].giveX() * -1, coordinateDifferences[i].giveY());
+            }
+            else if(coordinateDifferences[i].equals(new Coordinates(-1, 0)) || coordinateDifferences[i].equals(new Coordinates(1, 0))) {
+                coordinateDifferences[i].setCoordinates(coordinateDifferences[i].giveY(), coordinateDifferences[i].giveX() * -1);
+            }
+            else if(coordinateDifferences[i].equals(new Coordinates(0, -1)) || coordinateDifferences[i].equals(new Coordinates(0, 1))) {
+                coordinateDifferences[i].setCoordinates(coordinateDifferences[i].giveY(), coordinateDifferences[i].giveX());
             }
         }
     }

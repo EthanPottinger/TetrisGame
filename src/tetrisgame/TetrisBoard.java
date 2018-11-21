@@ -84,36 +84,47 @@ public class TetrisBoard {
     }
     public void outputGrid(String title) {
         String grid = "";
+        Coordinates[] place = getPlace();
         for(int y = 0; y < board.length; y++) {
             for(int x = 0; x < board[0].length; x++) {
-                if(board[y][x]) grid += "X   ";
-                else grid += "*    ";
+                if(board[y][x]) {
+                    for(int i = 0; i < 4; i++) {
+                        if(y == place[i].giveY() && x == place[i].giveX()) {
+                            Coordinates yeet = place[i].subtract(point);
+                            grid += yeet.getCoordinates() + "                               ";
+                        }
+                    }
+                }
+                else grid += "*                                       ";
             }
             grid += "\n";
         }
         JOptionPane.showMessageDialog(null, grid, title, JOptionPane.PLAIN_MESSAGE);
     }
     public void spawnTetrimino() {
-        tetrimino = randInt(0, 6);
+        tetrimino = 5;
+        Coordinates[] place = getPlace();
         for(int i = 0; i < 4; i++) {
-            Coordinates place = TETRIMINOS[tetrimino].getCoordinatesDifferences()[i].add(point);
-            if(place.valid(board)) board[place.giveY()][place.giveX()] = true;
-            else if(place.collision(board))System.exit(0);
+            if(place[i].valid(board)) board[place[i].giveY()][place[i].giveX()] = true;
+            else if(place[i].collision(board))System.exit(0);
         }
     }
     public void deactivateTetrimino() {
+        Coordinates[] place = getPlace();
         for (int i = 0; i < 4; i++) {
-            Coordinates place = TETRIMINOS[tetrimino].getCoordinatesDifferences()[i].add(point);
-            board[place.giveY()][place.giveX()] = false;
+            if(place[i].inBounds(board) == true) {
+                board[place[i].giveY()][place[i].giveX()] = false;
+                place[i].outputCoordinates();
+            }
         }
     }
     public void moveDown() {
         deactivateTetrimino();
         boolean valid = true;
+        Coordinates[] place = getPlace();
         for(int i = 0; i < 4; i++) {
-            Coordinates place = TETRIMINOS[tetrimino].getCoordinatesDifferences()[i].add(point);
-            place.moveDown();
-            if(place.valid(board) == false) valid = false;
+            place[i].moveDown();
+            if(place[i].collision(board) == true && place[i].giveY() > 19) valid = false;
         }
         if(valid) point.moveDown();
         updateTetrimino();
@@ -126,33 +137,44 @@ public class TetrisBoard {
     public void moveRight() {
         deactivateTetrimino();
         boolean valid = true;
+        Coordinates[] place = getPlace();
         for(int i = 0; i < 4; i++) {
-            Coordinates place = TETRIMINOS[tetrimino].getCoordinatesDifferences()[i].add(point);
-            place.moveRight();
-            if(place.valid(board) == false) valid = false;
+            place[i].moveRight();
+            if(place[i].valid(board) == false) valid = false;
         }
         if(valid) point.moveRight();
         updateTetrimino();
     }
     public void rotate() {
-        
+        deactivateTetrimino();
+        TETRIMINOS[tetrimino].rotateClockwise(board, point);
+        updateTetrimino();
     }
     public void moveLeft() {
         deactivateTetrimino();
         boolean valid = true;
+        Coordinates[] place = getPlace();
         for(int i = 0; i < 4; i++) {
-            Coordinates place = TETRIMINOS[tetrimino].getCoordinatesDifferences()[i].add(point);
-            place.moveLeft();
-            if(place.valid(board) == false) valid = false;
+            place[i].moveLeft();
+            if(place[i].valid(board) == false) valid = false;
         }
         if(valid) point.moveLeft();
         updateTetrimino();
     }
     public void updateTetrimino() {
+        Coordinates[] place = getPlace();
         for(int i = 0; i < 4; i++) {
-            Coordinates place = TETRIMINOS[tetrimino].getCoordinatesDifferences()[i].add(point);
-            board[place.giveY()][place.giveX()] = true;
+            if(place[i].valid(board)) {
+                board[place[i].giveY()][place[i].giveX()] = true;
+                }
         }
+    }
+    public Coordinates[] getPlace() {
+        Coordinates[] place = new Coordinates[4];
+        for(int i = 0; i < 4; i++) {
+            place[i] = TETRIMINOS[tetrimino].getCoordinatesDifferences()[i].add(point);
+        }
+        return place;
     }
     public int randInt(int lo, int hi) {
         return (int)((Math.random() * hi - lo + 1) + lo);

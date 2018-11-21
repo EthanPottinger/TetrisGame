@@ -46,6 +46,9 @@ public class Coordinates {
     public Coordinates add(Coordinates add) {
         return new Coordinates(x + add.giveX(), y + add.giveY());
     }
+    public Coordinates subtract(Coordinates sub) {
+        return new Coordinates(x - sub.giveX(), y - sub.giveY());
+    }
     public void moveLeft() {
         x--;
     }
@@ -65,6 +68,9 @@ public class Coordinates {
         if(coordinate.giveX() != this.x) return false;
         else if(coordinate.giveY() != this.y) return false;
         return true;
+    }
+    public String getCoordinates() {
+        return "(" + x + ", " + y + ")";
     }
     
 }
